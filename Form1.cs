@@ -285,6 +285,31 @@ namespace _3d_IK
             Coord.Add(new MyPoint(0d, 0d, 0d, 1d));
             Coord.Add(new MyPoint(0d, 0d, 250d, 1d));
 
+            double[,] M = null;
+
+            if (radioButtonProfile.Checked)
+            {
+                M = RotateY(90);
+            }
+
+            if (radioButtonHorizontal.Checked)
+            {
+                M = RotateX(270);
+            }
+
+            if (M != null)
+            {
+                double[,] buff;
+                for (int i = 0; i < Coord.Count; i++)
+                {
+                    buff = Multiply(Coord[i].ToMatr(), M);
+                    Coord[i].X = buff[0, 0];
+                    Coord[i].Y = buff[0, 1];
+                    Coord[i].Z = buff[0, 2];
+                    Coord[i].W = buff[0, 3];
+                }
+            }
+
             gr = Graphics.FromImage(bmp);
             gr.DrawLine(Pens.Red,
                         Convert.ToInt32(Math.Round(X0 + Coord[1].Y)),
@@ -325,7 +350,26 @@ namespace _3d_IK
                 localPoints.Add(new MyPoint(p));
             }
 
+            double[,] M;
+
+            if (radioButtonProfile.Checked)
+            {
+                M = RotateY(90);
+                localPoints = Action(M, localPoints);
+            }
+
+            if (radioButtonHorizontal.Checked)
+            {
+                M = RotateX(270);
+                localPoints = Action(M, localPoints);
+            }
+
             return localPoints;
+        }
+
+        private void buttonRefresh_Click(object sender, EventArgs e)
+        {
+            DrawEdges();
         }
     }
 

@@ -59,12 +59,17 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabProjections = new System.Windows.Forms.TabPage();
+            this.radioButtonProfile = new System.Windows.Forms.RadioButton();
+            this.radioButtonHorizontal = new System.Windows.Forms.RadioButton();
+            this.radioButtonFrontal = new System.Windows.Forms.RadioButton();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.buttonRefresh = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabEdges.SuspendLayout();
             this.tabFaces.SuspendLayout();
+            this.tabProjections.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -81,7 +86,7 @@
             // 
             this.tabControl1.Controls.Add(this.tabEdges);
             this.tabControl1.Controls.Add(this.tabFaces);
-            this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabProjections);
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Multiline = true;
@@ -429,14 +434,53 @@
             this.label5.TabIndex = 0;
             this.label5.Text = "X";
             // 
-            // tabPage3
+            // tabProjections
             // 
-            this.tabPage3.Location = new System.Drawing.Point(4, 25);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(328, 279);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "tabPage3";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            this.tabProjections.Controls.Add(this.buttonRefresh);
+            this.tabProjections.Controls.Add(this.radioButtonProfile);
+            this.tabProjections.Controls.Add(this.radioButtonHorizontal);
+            this.tabProjections.Controls.Add(this.radioButtonFrontal);
+            this.tabProjections.Location = new System.Drawing.Point(4, 25);
+            this.tabProjections.Name = "tabProjections";
+            this.tabProjections.Size = new System.Drawing.Size(328, 279);
+            this.tabProjections.TabIndex = 2;
+            this.tabProjections.Text = "Projections";
+            this.tabProjections.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonProfile
+            // 
+            this.radioButtonProfile.AutoSize = true;
+            this.radioButtonProfile.Location = new System.Drawing.Point(116, 19);
+            this.radioButtonProfile.Name = "radioButtonProfile";
+            this.radioButtonProfile.Size = new System.Drawing.Size(69, 21);
+            this.radioButtonProfile.TabIndex = 2;
+            this.radioButtonProfile.Text = "Profile";
+            this.radioButtonProfile.UseVisualStyleBackColor = true;
+            this.radioButtonProfile.CheckedChanged += new System.EventHandler(this.buttonRefresh_Click);
+            // 
+            // radioButtonHorizontal
+            // 
+            this.radioButtonHorizontal.AutoSize = true;
+            this.radioButtonHorizontal.Location = new System.Drawing.Point(210, 19);
+            this.radioButtonHorizontal.Name = "radioButtonHorizontal";
+            this.radioButtonHorizontal.Size = new System.Drawing.Size(93, 21);
+            this.radioButtonHorizontal.TabIndex = 1;
+            this.radioButtonHorizontal.Text = "Horizontal";
+            this.radioButtonHorizontal.UseVisualStyleBackColor = true;
+            this.radioButtonHorizontal.CheckedChanged += new System.EventHandler(this.buttonRefresh_Click);
+            // 
+            // radioButtonFrontal
+            // 
+            this.radioButtonFrontal.AutoSize = true;
+            this.radioButtonFrontal.Checked = true;
+            this.radioButtonFrontal.Location = new System.Drawing.Point(17, 19);
+            this.radioButtonFrontal.Name = "radioButtonFrontal";
+            this.radioButtonFrontal.Size = new System.Drawing.Size(73, 21);
+            this.radioButtonFrontal.TabIndex = 0;
+            this.radioButtonFrontal.TabStop = true;
+            this.radioButtonFrontal.Text = "Frontal";
+            this.radioButtonFrontal.UseVisualStyleBackColor = true;
+            this.radioButtonFrontal.CheckedChanged += new System.EventHandler(this.buttonRefresh_Click);
             // 
             // tabPage4
             // 
@@ -446,6 +490,15 @@
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "tabPage4";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // buttonRefresh
+            // 
+            this.buttonRefresh.Location = new System.Drawing.Point(17, 232);
+            this.buttonRefresh.Name = "buttonRefresh";
+            this.buttonRefresh.Size = new System.Drawing.Size(292, 44);
+            this.buttonRefresh.TabIndex = 3;
+            this.buttonRefresh.Text = "Refresh";
+            this.buttonRefresh.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -462,6 +515,8 @@
             this.tabEdges.PerformLayout();
             this.tabFaces.ResumeLayout(false);
             this.tabFaces.PerformLayout();
+            this.tabProjections.ResumeLayout(false);
+            this.tabProjections.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -472,7 +527,7 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabEdges;
         private System.Windows.Forms.TabPage tabFaces;
-        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage tabProjections;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.Button buttonApply;
         private System.Windows.Forms.Label label4;
@@ -501,6 +556,10 @@
         private System.Windows.Forms.Button buttonScale;
         private System.Windows.Forms.Button buttonMove;
         private System.Windows.Forms.Button buttonRotate;
+        private System.Windows.Forms.RadioButton radioButtonProfile;
+        private System.Windows.Forms.RadioButton radioButtonHorizontal;
+        private System.Windows.Forms.RadioButton radioButtonFrontal;
+        private System.Windows.Forms.Button buttonRefresh;
     }
 }
 
