@@ -129,6 +129,30 @@ namespace _3d_IK
             return matrix;
         }
 
+        public double[,] Perspective(double d)
+        {
+            var matrix = new[,]
+            {
+                {1d, 0d, 0d, 0d},
+                {0d, 1d, 0d, 0d},
+                {0d, 0d, 1d, 1d/d},
+                {0d, 0d, 0d, 0d}
+            };
+            return matrix;
+        }
+
+        public double[,] Oblique(double a, double L)
+        {
+            var matrix = new[,]
+            {
+                {1d, 0d, 0d, 0d},
+                {0d, 1d, 0d, 0d},
+                {Math.Cos(a * Math.PI / 180d) * L, Math.Sin(a * Math.PI / 180d) * L, 1d, 0d},
+                {0d, 0d, 0d, 1d}
+            };
+            return matrix;
+        }
+
         private void buttonApply_Click(object sender, EventArgs e)
         {
             double a = Convert.ToDouble(textBoxA.Text);
@@ -136,7 +160,7 @@ namespace _3d_IK
             double c = Convert.ToDouble(textBoxC.Text);
             double h = Convert.ToDouble(textBoxH.Text);
             CreateModel(a, b, c, h);
-            DrawEdges();
+            Draw();
         }
 
         private void buttonRotate_Click(object sender, EventArgs e)
@@ -145,7 +169,7 @@ namespace _3d_IK
             double[,] Y = RotateY(Convert.ToDouble(textBoxRotateY.Text));
             double[,] Z = RotateZ(Convert.ToDouble(textBoxRotateZ.Text));
             Points = Action(Multiply(Multiply(X, Y), Z), Points);
-            DrawEdges();
+            Draw();
         }
 
         private void buttonMove_Click(object sender, EventArgs e)
@@ -155,7 +179,7 @@ namespace _3d_IK
                                    Convert.ToDouble(textBoxMoveY.Text),
                                    Convert.ToDouble(textBoxMoveZ.Text));
             Points = Action(T, Points);
-            DrawEdges();
+            Draw();
         }
 
         private void buttonScale_Click(object sender, EventArgs e)
@@ -164,7 +188,7 @@ namespace _3d_IK
                                 Convert.ToDouble(textBoxScaleY.Text),
                                 Convert.ToDouble(textBoxScaleZ.Text));
             Points = Action(S, Points);
-            DrawEdges();
+            Draw();
         }
 
         public void CreateModel(double a, double b, double c, double h)
@@ -244,6 +268,12 @@ namespace _3d_IK
             Faces.Add(new MyFace(new List<int>() { n6, n10, n7, n9 }));*/
         }
 
+        public void Draw()
+        {
+                DrawEdges();
+       
+        }
+
         public void DrawEdges()
         {
             gr = Graphics.FromImage(bmp);
@@ -295,6 +325,38 @@ namespace _3d_IK
             if (radioButtonHorizontal.Checked)
             {
                 M = RotateX(270);
+            }
+
+
+            if (radioButtonPerspective.Checked)
+            {
+                double[,] buff;
+                double d = Convert.ToDouble(textBoxD.Text);
+                double p = Convert.ToDouble(textBoxRo.Text);
+                M = Multiply(RotateZ(Convert.ToDouble(textBoxEpsilon.Text)), RotateX(Convert.ToDouble(textBoxFi.Text)));
+
+                for (int i = 0; i < Coord.Count; i++)
+                {
+                    buff = Multiply(Coord[i].ToMatr(), M);
+                    buff[0, 2] = buff[0, 2] + p;
+                    if ((buff[0, 2] < 0.001d) && (buff[0, 2] >= 0)) { buff[0, 2] = 0.001d; }
+                    if ((buff[0, 2] > -0.001d) && (buff[0, 2] < 0)) { buff[0, 2] = -0.001d; }
+                    Coord[i].X = buff[0, 0] / (buff[0, 2] / d);
+                    Coord[i].Y = buff[0, 1] / (buff[0, 2] / d);
+                    Coord[i].Z = buff[0, 2];
+                    Coord[i].W = 1;
+                }
+                M = null;
+            }
+
+            if (radioButtonAxonometric.Checked)
+            {
+                M = Multiply(RotateY(Convert.ToDouble(textBoxPsi.Text)), RotateX(Convert.ToDouble(textBoxFiAx.Text)));
+            }
+
+            if (radioButtonOblique.Checked)
+            {
+                M = Oblique(Convert.ToDouble(textBoxAlpha.Text), Convert.ToDouble(textBoxL.Text));
             }
 
             if (M != null)
@@ -364,12 +426,43 @@ namespace _3d_IK
                 localPoints = Action(M, localPoints);
             }
 
+
+            if (radioButtonPerspective.Checked)
+            {
+                double[,] buff;
+                double d = Convert.ToDouble(textBoxD.Text);
+                double p = Convert.ToDouble(textBoxRo.Text);
+                M = Multiply(RotateZ(Convert.ToDouble(textBoxEpsilon.Text)), RotateX(Convert.ToDouble(textBoxFi.Text)));
+
+                for (int i = 0; i < localPoints.Count; i++)
+                {
+                    buff = Multiply(localPoints[i].ToMatr(), M);
+                    buff[0, 2] = buff[0, 2] + p;
+                    if ((buff[0, 2] < 0.001d) && (buff[0, 2] >= 0)) { buff[0, 2] = 0.001d; }
+                    if ((buff[0, 2] > -0.001d) && (buff[0, 2] < 0)) { buff[0, 2] = -0.001d; }
+                    localPoints[i].X = buff[0, 0] / (buff[0, 2] / d);
+                    localPoints[i].Y = buff[0, 1] / (buff[0, 2] / d);
+                    localPoints[i].Z = buff[0, 2];
+                    localPoints[i].W = 1;
+                }
+            }
+            if (radioButtonAxonometric.Checked)
+            {
+                M = Multiply(RotateY(Convert.ToDouble(textBoxPsi.Text)), RotateX(Convert.ToDouble(textBoxFiAx.Text)));
+                localPoints = Action(M, localPoints);
+            }
+            if (radioButtonOblique.Checked)
+            {
+                M = Oblique(Convert.ToDouble(textBoxAlpha.Text), Convert.ToDouble(textBoxL.Text));
+                localPoints = Action(M, localPoints);
+            }
+
             return localPoints;
         }
 
         private void buttonRefresh_Click(object sender, EventArgs e)
         {
-            DrawEdges();
+            Draw();
         }
     }
 

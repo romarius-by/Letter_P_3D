@@ -60,11 +60,30 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.tabProjections = new System.Windows.Forms.TabPage();
+            this.buttonRefresh = new System.Windows.Forms.Button();
             this.radioButtonProfile = new System.Windows.Forms.RadioButton();
             this.radioButtonHorizontal = new System.Windows.Forms.RadioButton();
             this.radioButtonFrontal = new System.Windows.Forms.RadioButton();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.buttonRefresh = new System.Windows.Forms.Button();
+            this.radioButtonPerspective = new System.Windows.Forms.RadioButton();
+            this.textBoxRo = new System.Windows.Forms.TextBox();
+            this.textBoxD = new System.Windows.Forms.TextBox();
+            this.textBoxEpsilon = new System.Windows.Forms.TextBox();
+            this.textBoxFi = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.radioButtonAxonometric = new System.Windows.Forms.RadioButton();
+            this.textBoxPsi = new System.Windows.Forms.TextBox();
+            this.textBoxFiAx = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.radioButtonOblique = new System.Windows.Forms.RadioButton();
+            this.textBoxAlpha = new System.Windows.Forms.TextBox();
+            this.textBoxL = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabEdges.SuspendLayout();
@@ -436,6 +455,25 @@
             // 
             // tabProjections
             // 
+            this.tabProjections.Controls.Add(this.label18);
+            this.tabProjections.Controls.Add(this.label17);
+            this.tabProjections.Controls.Add(this.textBoxL);
+            this.tabProjections.Controls.Add(this.textBoxAlpha);
+            this.tabProjections.Controls.Add(this.radioButtonOblique);
+            this.tabProjections.Controls.Add(this.label16);
+            this.tabProjections.Controls.Add(this.label15);
+            this.tabProjections.Controls.Add(this.textBoxFiAx);
+            this.tabProjections.Controls.Add(this.textBoxPsi);
+            this.tabProjections.Controls.Add(this.radioButtonAxonometric);
+            this.tabProjections.Controls.Add(this.label14);
+            this.tabProjections.Controls.Add(this.label13);
+            this.tabProjections.Controls.Add(this.label12);
+            this.tabProjections.Controls.Add(this.label11);
+            this.tabProjections.Controls.Add(this.textBoxFi);
+            this.tabProjections.Controls.Add(this.textBoxEpsilon);
+            this.tabProjections.Controls.Add(this.textBoxD);
+            this.tabProjections.Controls.Add(this.textBoxRo);
+            this.tabProjections.Controls.Add(this.radioButtonPerspective);
             this.tabProjections.Controls.Add(this.buttonRefresh);
             this.tabProjections.Controls.Add(this.radioButtonProfile);
             this.tabProjections.Controls.Add(this.radioButtonHorizontal);
@@ -446,6 +484,15 @@
             this.tabProjections.TabIndex = 2;
             this.tabProjections.Text = "Projections";
             this.tabProjections.UseVisualStyleBackColor = true;
+            // 
+            // buttonRefresh
+            // 
+            this.buttonRefresh.Location = new System.Drawing.Point(17, 232);
+            this.buttonRefresh.Name = "buttonRefresh";
+            this.buttonRefresh.Size = new System.Drawing.Size(292, 44);
+            this.buttonRefresh.TabIndex = 3;
+            this.buttonRefresh.Text = "Refresh";
+            this.buttonRefresh.UseVisualStyleBackColor = true;
             // 
             // radioButtonProfile
             // 
@@ -491,14 +538,174 @@
             this.tabPage4.Text = "tabPage4";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
-            // buttonRefresh
+            // radioButtonPerspective
             // 
-            this.buttonRefresh.Location = new System.Drawing.Point(17, 232);
-            this.buttonRefresh.Name = "buttonRefresh";
-            this.buttonRefresh.Size = new System.Drawing.Size(292, 44);
-            this.buttonRefresh.TabIndex = 3;
-            this.buttonRefresh.Text = "Refresh";
-            this.buttonRefresh.UseVisualStyleBackColor = true;
+            this.radioButtonPerspective.AutoSize = true;
+            this.radioButtonPerspective.Location = new System.Drawing.Point(17, 46);
+            this.radioButtonPerspective.Name = "radioButtonPerspective";
+            this.radioButtonPerspective.Size = new System.Drawing.Size(103, 21);
+            this.radioButtonPerspective.TabIndex = 4;
+            this.radioButtonPerspective.Text = "Perspective";
+            this.radioButtonPerspective.UseVisualStyleBackColor = true;
+            this.radioButtonPerspective.CheckedChanged += new System.EventHandler(this.buttonRefresh_Click);
+            // 
+            // textBoxRo
+            // 
+            this.textBoxRo.Location = new System.Drawing.Point(29, 73);
+            this.textBoxRo.Name = "textBoxRo";
+            this.textBoxRo.Size = new System.Drawing.Size(41, 22);
+            this.textBoxRo.TabIndex = 5;
+            this.textBoxRo.Text = "400";
+            // 
+            // textBoxD
+            // 
+            this.textBoxD.Location = new System.Drawing.Point(102, 73);
+            this.textBoxD.Name = "textBoxD";
+            this.textBoxD.Size = new System.Drawing.Size(41, 22);
+            this.textBoxD.TabIndex = 6;
+            this.textBoxD.Text = "300";
+            // 
+            // textBoxEpsilon
+            // 
+            this.textBoxEpsilon.Location = new System.Drawing.Point(179, 73);
+            this.textBoxEpsilon.Name = "textBoxEpsilon";
+            this.textBoxEpsilon.Size = new System.Drawing.Size(41, 22);
+            this.textBoxEpsilon.TabIndex = 7;
+            this.textBoxEpsilon.Text = "30";
+            // 
+            // textBoxFi
+            // 
+            this.textBoxFi.Location = new System.Drawing.Point(253, 73);
+            this.textBoxFi.Name = "textBoxFi";
+            this.textBoxFi.Size = new System.Drawing.Size(41, 22);
+            this.textBoxFi.TabIndex = 8;
+            this.textBoxFi.Text = "-120";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(4, 74);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(16, 17);
+            this.label11.TabIndex = 9;
+            this.label11.Text = "ρ";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(76, 76);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(16, 17);
+            this.label12.TabIndex = 10;
+            this.label12.Text = "d";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(152, 76);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(16, 17);
+            this.label13.TabIndex = 11;
+            this.label13.Text = "θ";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(226, 76);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(17, 17);
+            this.label14.TabIndex = 12;
+            this.label14.Text = "φ";
+            // 
+            // radioButtonAxonometric
+            // 
+            this.radioButtonAxonometric.AutoSize = true;
+            this.radioButtonAxonometric.Location = new System.Drawing.Point(17, 113);
+            this.radioButtonAxonometric.Name = "radioButtonAxonometric";
+            this.radioButtonAxonometric.Size = new System.Drawing.Size(106, 21);
+            this.radioButtonAxonometric.TabIndex = 13;
+            this.radioButtonAxonometric.Text = "Axonometric";
+            this.radioButtonAxonometric.UseVisualStyleBackColor = true;
+            this.radioButtonAxonometric.CheckedChanged += new System.EventHandler(this.buttonRefresh_Click);
+            // 
+            // textBoxPsi
+            // 
+            this.textBoxPsi.Location = new System.Drawing.Point(29, 140);
+            this.textBoxPsi.Name = "textBoxPsi";
+            this.textBoxPsi.Size = new System.Drawing.Size(41, 22);
+            this.textBoxPsi.TabIndex = 14;
+            this.textBoxPsi.Text = "30";
+            // 
+            // textBoxFiAx
+            // 
+            this.textBoxFiAx.Location = new System.Drawing.Point(102, 140);
+            this.textBoxFiAx.Name = "textBoxFiAx";
+            this.textBoxFiAx.Size = new System.Drawing.Size(41, 22);
+            this.textBoxFiAx.TabIndex = 15;
+            this.textBoxFiAx.Text = "-30";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(7, 143);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(17, 17);
+            this.label15.TabIndex = 16;
+            this.label15.Text = "ψ";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(80, 143);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(17, 17);
+            this.label16.TabIndex = 17;
+            this.label16.Text = "φ";
+            // 
+            // radioButtonOblique
+            // 
+            this.radioButtonOblique.AutoSize = true;
+            this.radioButtonOblique.Location = new System.Drawing.Point(17, 183);
+            this.radioButtonOblique.Name = "radioButtonOblique";
+            this.radioButtonOblique.Size = new System.Drawing.Size(78, 21);
+            this.radioButtonOblique.TabIndex = 18;
+            this.radioButtonOblique.Text = "Oblique";
+            this.radioButtonOblique.UseVisualStyleBackColor = true;
+            this.radioButtonOblique.CheckedChanged += new System.EventHandler(this.buttonRefresh_Click);
+            // 
+            // textBoxAlpha
+            // 
+            this.textBoxAlpha.Location = new System.Drawing.Point(127, 183);
+            this.textBoxAlpha.Name = "textBoxAlpha";
+            this.textBoxAlpha.Size = new System.Drawing.Size(41, 22);
+            this.textBoxAlpha.TabIndex = 19;
+            this.textBoxAlpha.Text = "45";
+            // 
+            // textBoxL
+            // 
+            this.textBoxL.Location = new System.Drawing.Point(210, 183);
+            this.textBoxL.Name = "textBoxL";
+            this.textBoxL.Size = new System.Drawing.Size(41, 22);
+            this.textBoxL.TabIndex = 20;
+            this.textBoxL.Text = "1";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(106, 186);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(16, 17);
+            this.label17.TabIndex = 21;
+            this.label17.Text = "α";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(187, 186);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(16, 17);
+            this.label18.TabIndex = 22;
+            this.label18.Text = "L";
             // 
             // Form1
             // 
@@ -560,6 +767,25 @@
         private System.Windows.Forms.RadioButton radioButtonHorizontal;
         private System.Windows.Forms.RadioButton radioButtonFrontal;
         private System.Windows.Forms.Button buttonRefresh;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox textBoxFi;
+        private System.Windows.Forms.TextBox textBoxEpsilon;
+        private System.Windows.Forms.TextBox textBoxD;
+        private System.Windows.Forms.TextBox textBoxRo;
+        private System.Windows.Forms.RadioButton radioButtonPerspective;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.TextBox textBoxL;
+        private System.Windows.Forms.TextBox textBoxAlpha;
+        private System.Windows.Forms.RadioButton radioButtonOblique;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox textBoxFiAx;
+        private System.Windows.Forms.TextBox textBoxPsi;
+        private System.Windows.Forms.RadioButton radioButtonAxonometric;
     }
 }
 
